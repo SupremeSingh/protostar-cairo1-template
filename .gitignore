@@ -1,2 +1,2 @@
-/build
-/.protostar_cache
+build/
+.protostar_cache/
