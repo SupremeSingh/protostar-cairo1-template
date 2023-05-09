@@ -5,10 +5,11 @@ trait IERC20 {
     fn symbol() -> felt252;
     fn decimals() -> u8;
     fn total_supply() -> u256;
-    fn balanceOf(account: ContractAddress) -> u256;
+    fn balance_of(account: ContractAddress) -> u256;
     fn allowance(owner: ContractAddress, spender: ContractAddress) -> u256;
+    fn mint(amount: u256);
     fn transfer(recipient: ContractAddress, amount: u256);
-    fn transferFrom(sender: ContractAddress, recipient: ContractAddress, amount: u256);
+    fn transfer_from(sender: ContractAddress, recipient: ContractAddress, amount: u256);
     fn approve(spender: ContractAddress, amount: u256);
 }
 
@@ -62,7 +63,7 @@ mod ERC20 {
     }
 
     #[view]
-    fn balanceOf(account: ContractAddress) -> u256 {
+    fn balance_of(account: ContractAddress) -> u256 {
         _balances::read(account)
     }
 
@@ -99,7 +100,7 @@ mod ERC20 {
     }
 
     #[external]
-    fn transferFrom(from: ContractAddress, to: ContractAddress, amount: u256) {
+    fn transfer_from(from: ContractAddress, to: ContractAddress, amount: u256) {
         let caller = get_caller_address();
         let allowed: u256 = _allowances::read((from, caller));
 
