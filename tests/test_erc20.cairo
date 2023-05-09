@@ -54,13 +54,13 @@ fn test_balance_of() {
     let mut calldata_one: Array<felt252> = ArrayTrait::new();
     calldata_one.append(address_one);
 
-    let return_data_one: Array<felt252> = call(deployed_contract_address, 'balanceOf', calldata_one).unwrap();
+    let return_data_one: Array<felt252> = call(deployed_contract_address, 'balance_of', calldata_one).unwrap();
     assert(*return_data_one.at(1_u32) == 100, *return_data_one.at(1_u32)); 
 
     let mut calldata_two: Array<felt252> = ArrayTrait::new();
     calldata_two.append(address_two);
 
-    let return_data_two: Array<felt252> = call(deployed_contract_address, 'balanceOf', calldata_two).unwrap();
+    let return_data_two: Array<felt252> = call(deployed_contract_address, 'balance_of', calldata_two).unwrap();
     assert(*return_data_two.at(1_u32) == 0, *return_data_two.at(1_u32));
 }
 
