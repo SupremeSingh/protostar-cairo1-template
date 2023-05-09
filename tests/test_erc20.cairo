@@ -1,15 +1,9 @@
 use result::ResultTrait;
-use cheatcodes::RevertedTransactionTrait;
 use array::ArrayTrait;
-use array::ArrayTCloneImpl;
-use array::SpanTrait;
-use clone::Clone;
-use debug::PrintTrait;
 use starknet::ContractAddress;
 use starknet::contract_address_const;
 use starknet::contract_address_to_felt252;
 use traits::Into;
-use traits::TryInto;
 
 fn setup() -> (felt252, felt252, felt252){
     let address_one: ContractAddress = contract_address_const::<0>();
