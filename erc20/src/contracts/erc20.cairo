@@ -7,9 +7,9 @@ trait IERC20 {
     fn total_supply() -> u256;
     fn balanceOf(account: ContractAddress) -> u256;
     fn allowance(owner: ContractAddress, spender: ContractAddress) -> u256;
-    fn transfer(recipient: ContractAddress, amount: u256) -> bool;
-    fn transferFrom(sender: ContractAddress, recipient: ContractAddress, amount: u256) -> bool;
-    fn approve(spender: ContractAddress, amount: u256) -> bool;
+    fn transfer(recipient: ContractAddress, amount: u256);
+    fn transferFrom(sender: ContractAddress, recipient: ContractAddress, amount: u256);
+    fn approve(spender: ContractAddress, amount: u256);
 }
 
 #[contract]
@@ -72,14 +72,12 @@ mod ERC20 {
     }
 
     #[external]
-    fn approve(spender: ContractAddress, amount: u256) -> bool {
+    fn approve(spender: ContractAddress, amount: u256) {
         let owner = get_caller_address();
 
         _allowances::write((owner, spender), amount);
 
         Approval(owner, spender, amount);
-
-        true
     }
 
     #[external]
@@ -91,19 +89,17 @@ mod ERC20 {
     }
 
     #[external]
-    fn transfer(to: ContractAddress, amount: u256) -> bool {
+    fn transfer(to: ContractAddress, amount: u256) {
         let from = get_caller_address();
 
         _balances::write(from, _balances::read(from) - amount);
         _balances::write(to, _balances::read(to) + amount);
 
         Transfer(from, to, amount);
-
-        true
     }
 
     #[external]
-    fn transferFrom(from: ContractAddress, to: ContractAddress, amount: u256) -> bool {
+    fn transferFrom(from: ContractAddress, to: ContractAddress, amount: u256) {
         let caller = get_caller_address();
         let allowed: u256 = _allowances::read((from, caller));
 
@@ -120,7 +116,5 @@ mod ERC20 {
         _balances::write(to, _balances::read(to) + amount);
 
         Transfer(from, to, amount);
-
-        true
     }
 }
