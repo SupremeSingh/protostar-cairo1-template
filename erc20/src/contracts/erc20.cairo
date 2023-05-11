@@ -76,7 +76,7 @@ mod ERC20 {
 
         _allowances::write((owner, spender), amount);
 
-        // Approval(owner, spender, amount);
+        Approval(owner, spender, amount);
     }
 
     #[external]
@@ -94,7 +94,7 @@ mod ERC20 {
         _balances::write(from, _balances::read(from) - amount);
         _balances::write(to, _balances::read(to) + amount);
 
-        // Transfer(from, to, amount);
+        Transfer(from, to, amount);
     }
 
     #[external]
@@ -108,12 +108,12 @@ mod ERC20 {
 
         if !is_max {
             _allowances::write((from, caller), allowed - amount);
-            // Approval(from, caller, allowed - amount);
+            Approval(from, caller, allowed - amount);
         }
 
         _balances::write(from, _balances::read(from) - amount);
         _balances::write(to, _balances::read(to) + amount);
 
-        // Transfer(from, to, amount);
+        Transfer(from, to, amount);
     }
 }
