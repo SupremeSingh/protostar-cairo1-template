@@ -150,7 +150,6 @@ fn test_transfer_from() {
         low: 10_u128
     };
 
-    // Approve address_one to transfer 10 tokens from caller_address
     let mut calldata_zero: Array<felt252> = ArrayTrait::new();
     calldata_zero.append(address_one);
     calldata_zero.append(amount.high.into());
@@ -158,10 +157,8 @@ fn test_transfer_from() {
 
     invoke(deployed_contract_address, 'approve', calldata_zero).unwrap();
 
-    // Change the caller address to address_one
     start_prank(address_one, deployed_contract_address).unwrap();
 
-    // Transfer 10 tokens from caller_address to address_two
     let mut calldata_one: Array<felt252> = ArrayTrait::new();
     calldata_one.append(caller_address);
     calldata_one.append(address_two);
