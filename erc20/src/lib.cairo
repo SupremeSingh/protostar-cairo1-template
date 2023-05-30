@@ -1,1 +1,1 @@
-mod contracts;
+mod contract;
