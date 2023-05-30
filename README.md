@@ -29,10 +29,10 @@ Starknet: 0.11.2
 
 To get to this point, please take a look at updating ...
 
-- Scarb 
-- Cairo 
+- [Scarb](https://github.com/software-mansion/scarb)
+- [Cairo](https://github.com/starkware-libs/cairo) 
 
-And then build out the latest version of Protostar using ...
+And then build out the latest version of [Protostar](https://github.com/software-mansion/protostar) using ...
 
 ```
 curl -L https://raw.githubusercontent.com/software-mansion/protostar/master/install.sh | bash
