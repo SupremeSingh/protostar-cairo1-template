@@ -16,6 +16,36 @@ In this case, we can also benefit massively from the cheatcodes made available t
 
 To learn best practices for testing, I highly recommend you take a look at the tests in `tests/test_erc20.cairo` and compare it with the original contract in `erc20/src/contracts/erc20.cairo`.
 
+## Protostar Setup
+
+Please beware I am running my local setup on the following configuration - 
+
+```
+Protostar version: 0.12.0
+Cairo-lang version: 0.11.1.1
+Cairo 1 compiler version: 1.0.0rc0
+Starknet: 0.11.2
+```
+
+To get to this point, please take a look at updating ...
+
+- Scarb 
+- Cairo 
+
+And then build out the latest version of Protostar using ...
+
+```
+curl -L https://raw.githubusercontent.com/software-mansion/protostar/master/install.sh | bash
+```
+
+Do note you should also have all these repositories and their associated commands added to your path in environment variables. 
+
+And finally, if you are running Apple silicon, please also use this command in your terminal ...
+
+```
+cp cairo/target/release/starknet-sierra-compile ~/cairo_venv_v11/lib/python3.9/site-packages/starkware/starknet/compiler/v1/bin/starknet-sierra-compile
+```
+
 ## Debugging Code
 
 In order to debug code, it is very useful to be able to print out values or isolate errors in `match` statements. In order to be able to print out, please use - 
